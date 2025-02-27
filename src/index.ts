@@ -1,4 +1,4 @@
-import "./config/exceptions"
+import "./shared/config/exceptions"
 import express, {  type Express,type Request,type Response } from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
@@ -7,6 +7,7 @@ import { securityMiddleware } from "./shared/config/security"
 
 configDotenv()
 const app :Express = express()
+app.use(cors({"origin":"*"}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(securityMiddleware)

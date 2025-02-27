@@ -1,4 +1,4 @@
-import { db } from "../../db.server";
+import { db } from "../../utils/db.server";
 import { User } from "../../domain/User";
 import type { Iuser } from '../../interface/repository/IuserRepository';
 
