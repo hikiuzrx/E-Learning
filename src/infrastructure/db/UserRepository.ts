@@ -1,9 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { db } from "../../db.server";
 import { User } from "../../domain/User";
-import type { Iuser } from '../../interface/repository/Iuser';
+import type { Iuser } from '../../interface/repository/IuserRepository';
 
 export class UserRepository implements Iuser{
-    constructor(private prisma: PrismaClient){}
+    constructor(private prisma: typeof db){}
 
     async save(user: User): Promise<User> {
         console.log("heyy")

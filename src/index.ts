@@ -3,7 +3,7 @@ import express, {  type Express,type Request,type Response } from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import { configDotenv } from "dotenv"
-import { securityMiddleware } from "./config/security"
+import { securityMiddleware } from "./shared/config/security"
 
 configDotenv()
 const app :Express = express()

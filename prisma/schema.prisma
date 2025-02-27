@@ -14,6 +14,7 @@ model User {
     email String @unique
     fullName String @unique
     username String @unique @default("")
-    password String  @unique 
+    password String  @unique
+     
   
 }
