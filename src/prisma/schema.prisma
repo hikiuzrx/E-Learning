@@ -7,14 +7,41 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("file:./dev.db")
+  url      = "file:./dev.db"
 }
+
 model User {
-    id Int @id @default(autoincrement())
-    email String @unique
-    fullName String @unique
-    username String @unique @default("")
-    password String  @unique
-     
-  
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  fullName String @unique
+  username String @unique @default("")
+  password String @unique
+
+  user1Conversations Converstation[] @relation(name: "user1relation")
+  user2Conversations Converstation[] @relation(name: "user2relation")
+  messages           Message[]
+}
+
+model Converstation {
+  id         Int       @id @default(autoincrement())
+  user1Id    Int
+  user2Id    Int
+  user1      User      @relation(name: "user1relation", fields: [user1Id], references: [id])
+  user2      User      @relation(name: "user2relation", fields: [user2Id], references: [id])
+  created_at DateTime  @default(now())
+  message    Message[]
+
+  @@unique([user1Id, user2Id])
+}
+
+model Message {
+  id             Int @id @default(autoincrement())
+  converstaionId Int
+  senderid       Int
+
+  message       String
+  created_at     DateTime      @default(now())
+  updated_at     DateTime      @default(now())
+  converstation Converstation @relation(fields: [converstaionId], references: [id])
+  sender        User          @relation(fields: [senderid], references: [id])
 }
