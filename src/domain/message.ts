@@ -18,13 +18,13 @@ export class Message {
 
 export class conversation {
     id :Number;
-    user1id :Number;
-    user2id :Number;
-    createdAt :Date;
+    user1Id :Number;
+    user2Id :Number;
+    created_at :Date;
     constructor(id: number, user1id: number, user2id: number, createdAt: Date) {
         this.id = id;
-        this.user1id = user1id;
-        this.user2id = user2id;
-        this.createdAt = createdAt;
+        this.user1Id = user1id;
+        this.user2Id = user2id;
+        this.created_at = createdAt;
     }
 }
