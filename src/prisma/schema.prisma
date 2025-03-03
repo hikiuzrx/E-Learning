@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+ 
 }
 
 datasource db {
@@ -13,9 +14,9 @@ datasource db {
 model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
-  fullName String @unique
+  fullName String @default("")
   username String @unique @default("")
-  password String @unique
+  password String 
 
   user1Conversations Converstation[] @relation(name: "user1relation")
   user2Conversations Converstation[] @relation(name: "user2relation")

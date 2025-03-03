@@ -12,8 +12,13 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "@types/node": "^22.13.8",
     "@types/passport": "^1.0.17",
-    "@types/passport-google-oauth20": "^2.0.16"
+    "@types/passport-google-oauth20": "^2.0.16",
+    "@types/socket.io": "^3.0.2",
+    "socket.io-client": "^4.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -40,6 +45,8 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "prisma": "^6.4.1",
-    "redis": "^4.7.0"
+    "redis": "^4.7.0",
+    "socket.io": "^4.8.1",
+    "ws": "^8.18.1"
   }
 }

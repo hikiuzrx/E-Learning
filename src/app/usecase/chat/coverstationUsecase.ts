@@ -17,23 +17,26 @@ export class coversationeusecase {
     }
     async createconversation(user1Id: number, user2Id: number): Promise<number|null> {
         if (!user1Id || !user2Id) {
-            return null;
+            throw new Error("user1Id or user2Id is missing");
         }
         const conversation =await this.chatRepository.foundconverstation(user1Id, user2Id)
-       if ( !conversation) {//todo check type if err happened 
+       if (conversation) {
+        throw new Error("conversation already exists");
+       
+       }
         const message=await this.chatRepository.createConversation(user1Id, user2Id);
      if (!message) {
-        return null;
+        throw new Error(" robleem f creation ");
+        
      }
         return message
-           
-       }
-       return null
-        // return await this.chatRepository.createConversation(user1Id, user2Id);
-        
     }
     async getconversation(user1Id: number): Promise<conversation[]|null> {
-        return await this.chatRepository.getConversation(user1Id);
+    const conversations = await this.chatRepository.getConversation(user1Id);
+    if (!conversations) {
+        return null;
+    }
+    return conversations;
     }
 
 }
