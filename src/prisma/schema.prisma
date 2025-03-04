@@ -21,6 +21,7 @@ model User {
   user1Conversations Converstation[] @relation(name: "user1relation")
   user2Conversations Converstation[] @relation(name: "user2relation")
   messages           Message[]
+  courses            course[]
 }
 
 model Converstation {
@@ -31,6 +32,7 @@ model Converstation {
   user2      User      @relation(name: "user2relation", fields: [user2Id], references: [id])
   created_at DateTime  @default(now())
   message    Message[]
+ 
 
   @@unique([user1Id, user2Id])
 }
@@ -45,4 +47,37 @@ model Message {
   updated_at     DateTime      @default(now())
   converstation Converstation @relation(fields: [converstaionId], references: [id])
   sender        User          @relation(fields: [senderid], references: [id])
+}
+model course{
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  module  module[]
+
+
+}
+model module {
+  id Int @id @default(autoincrement())
+  courseId Int
+   moduleTitle String
+  
+ 
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  course course @relation(fields: [courseId], references: [id])
+
+  videos videos[]
+}
+model videos {
+ id Int @id @default(autoincrement())
+  moduleId Int
+  videoTitle String
+  videoUrl String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  module module @relation(fields: [moduleId], references: [id])
 }
